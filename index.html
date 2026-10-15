@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recall v2: friendly GUI</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EAF6FF;--card:#fff;--ink:#12233F;--mut:#62738F;--pri:#0EA5E9;--pri2:#DDF1FF;--pink:#2563EB;--sun:#FFC857;--ok:#2BB673;--bad:#FF5C5C;--line:#D6E8F7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1B33;--card:#172645;--ink:#EAF1FF;--mut:#9FB2D6;--pri:#38BDF8;--pri2:#22345E;--line:#2A3C66}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif}
+header{padding:24px 24px 4px;max-width:1300px;margin:auto}h1{margin:0;font-size:28px;font-weight:900}header p{color:var(--mut);margin:4px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:26px;padding:16px 24px 40px;max-width:1300px;margin:auto}
+.tag{font-weight:800;font-size:14px;margin:0 0 8px;color:var(--mut)}
+.scr{background:var(--card);border-radius:28px;padding:22px;min-height:540px;border:2px solid var(--line);box-shadow:6px 6px 0 var(--pri2);overflow-x:auto}
+.scr h2{font-size:21px;margin:0 0 4px;font-weight:900}.sub{color:var(--mut);font-size:13.5px;margin:0 0 14px;line-height:1.45}
+.btn{display:block;width:100%;background:var(--pri);color:#fff;border-radius:16px;padding:14px;font-weight:900;font-size:15px;text-align:center;margin-top:12px;box-shadow:0 4px 0 #5A32D6}
+.btn.alt{background:var(--pri2);color:var(--pri);box-shadow:0 4px 0 var(--line)}
+input{width:100%;padding:13px;border:2px solid var(--line);border-radius:14px;margin-top:10px;background:transparent;color:var(--ink);font:700 14px 'Nunito',sans-serif}
+.seg{display:flex;gap:8px;margin:12px 0}.seg span{flex:1;text-align:center;padding:10px;border-radius:14px;border:2px solid var(--line);font-size:14px;font-weight:800}.seg .on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.hero{background:linear-gradient(135deg,var(--pri),var(--pink));color:#fff;border-radius:22px;padding:18px;margin:12px 0}.hero b{font-size:20px;font-weight:900}.hero small{display:block;margin-top:4px;font-size:13.5px;opacity:.95}
+.hero .btn{background:#fff;color:var(--pri);box-shadow:0 4px 0 rgba(0,0,0,.15)}
+.bar{height:12px;background:var(--line);border-radius:10px;overflow:hidden;margin:5px 0 12px}.bar i{display:block;height:100%;border-radius:10px}
+.chip{display:inline-block;padding:4px 11px;border-radius:20px;font-size:12.5px;font-weight:800;background:var(--pri2);color:var(--pri);white-space:nowrap}
+.chip.sun{background:#FFF1CC;color:#9A6A00}.chip.red{background:#FFE1E1;color:#C23030}
+.opt{border:2px solid var(--line);border-radius:16px;padding:13px;margin:9px 0;font-size:14.5px;font-weight:700}.opt.sel{border-color:var(--pri);background:var(--pri2)}
+.conf{display:flex;gap:8px}.conf span{flex:1;text-align:center;padding:10px 4px;border-radius:14px;font-size:13.5px;font-weight:800}
+.c1{background:#DDF7E9;color:#157A4B}.c2{background:#FFF1CC;color:#9A6A00}.c3{background:#FFE1E1;color:#C23030}
+.score{font-size:48px;font-weight:900;line-height:1}
+.note{background:var(--pri2);border-radius:16px;padding:12px;font-size:13.5px;margin:10px 0;line-height:1.45}
+.sprint{display:flex;gap:10px;align-items:center;border:2px solid var(--line);border-radius:16px;padding:11px;margin:9px 0;font-size:14px;font-weight:700}
+.sprint b{background:var(--sun);color:#5A3F00;border-radius:10px;padding:6px 9px;font-size:12px;white-space:nowrap;font-weight:900}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:9px 4px;border-bottom:2px solid var(--line);text-align:left}
+.stat{display:flex;gap:8px;margin-bottom:12px}.stat div{flex:1;background:var(--bg);border-radius:16px;padding:10px;font-size:12px;color:var(--mut);font-weight:700}.stat b{display:block;font-size:22px;color:var(--ink);font-weight:900}
+.emo{font-size:34px}
+</style></head><body>
+<header><h1>Recall 🧠 friendly GUI</h1><p>Study smarter, even if it's the night before. Screenshot each screen for the PPT.</p></header>
+<main class="grid">
+
+<section><p class="tag">1. Login and sign up</p><div class="scr">
+<div class="emo">👋</div><h2>Hey, welcome back!</h2><p class="sub">Let's get you remembering things, not just reading them.</p>
+<div class="seg"><span class="on">🎓 Student</span><span>🧑‍🏫 Admin</span></div>
+<input placeholder="Your email"><input placeholder="Password" type="password">
+<span class="btn">Let's go</span><span class="btn alt">New here? Sign up</span></div></section>
+
+<section><p class="tag">2. Student dashboard</p><div class="scr">
+<div class="row"><h2>Hi Baani 👋</h2><span class="chip sun">🔥 6-day streak</span></div>
+<div class="hero"><b>Today's 5 ⚡</b><small>No choosing needed. We picked 5 quick questions you're most likely to forget. Takes about 3 min.</small><span class="btn">Start my 5</span></div>
+<b style="font-size:15px">What your brain remembers</b>
+<div style="margin-top:8px;font-size:13.5px;font-weight:700">Normalization 😬 38%<div class="bar"><i style="width:38%;background:var(--bad)"></i></div>
+Joins 🙂 61%<div class="bar"><i style="width:61%;background:var(--sun)"></i></div>
+Indexing 💪 88%<div class="bar"><i style="width:88%;background:var(--ok)"></i></div></div>
+<span class="btn alt">😱 Exam tomorrow? Tap here</span></div></section>
+
+<section><p class="tag">3. Quiz page</p><div class="scr">
+<div class="row"><span class="chip">Question 3 of 5</span><span class="chip sun">⏱ 00:24</span></div>
+<div class="bar" style="margin-top:14px"><i style="width:60%;background:var(--pri)"></i></div>
+<h2 style="font-size:17px">Which normal form removes partial dependency?</h2>
+<div class="opt">A. First normal form</div><div class="opt sel">B. Second normal form</div><div class="opt">C. Third normal form</div><div class="opt">D. BCNF</div>
+<p class="sub" style="margin:12px 0 6px">Be honest, how sure are you?</p>
+<div class="conf"><span class="c1">😎 Sure</span><span class="c2">🤔 Unsure</span><span class="c3">🎲 Guess</span></div>
+<span class="btn">Lock it in</span></div></section>
+
+<section><p class="tag">4. Result page</p><div class="scr">
+<div class="row"><div><div class="score">4/5 🎉</div><p class="sub">Nice work! You're 12% better than last time.</p></div></div>
+<div style="font-size:13.5px;font-weight:700">Joins ✅<div class="bar"><i style="width:100%;background:var(--ok)"></i></div>
+Indexing ✅<div class="bar"><i style="width:80%;background:var(--ok)"></i></div>
+Normalization 🎲 lucky guess<div class="bar"><i style="width:40%;background:var(--bad)"></i></div></div>
+<div class="note">💡 You got Normalization right, but you guessed. We'll bring it back in 10 min so it sticks.</div>
+<span class="btn">Fix my gaps (3 questions)</span><span class="btn alt">⚔️ Challenge a friend</span></div></section>
+
+<section><p class="tag">5. Exam Tomorrow mode</p><div class="scr">
+<div class="emo">😱</div><h2>Exam tomorrow? Breathe.</h2><p class="sub">Tell us what you have. We'll plan your night.</p>
+<input value="DBMS"><input value="3 hours left">
+<p class="sub" style="margin:14px 0 2px"><b>Your plan</b> (we skipped what you already know)</p>
+<div class="sprint"><b>10 min</b>Normalization, your weakest one</div>
+<div class="sprint"><b>10 min</b>Transactions and ACID</div>
+<div class="sprint"><b>10 min</b>Joins quick recall</div>
+<div class="sprint"><b>☀️ Morning</b>5-min recap of tonight's mistakes</div>
+<p class="sub">If you finish this, you can reach about <b style="color:var(--ok)">78%</b> 🎯</p>
+<span class="btn">Start sprint 1</span></div></section>
+
+<section><p class="tag">6. Admin analytics</p><div class="scr">
+<h2>DBMS Quiz 2 📊</h2><p class="sub">Here's how your class did.</p>
+<div class="stat"><div><b>42</b>attempts</div><div><b>68%</b>avg score</div><div><b>3</b>to check</div></div>
+<table><tr><th>Question</th><th>Solved</th><th>Level</th></tr>
+<tr><td>Define a foreign key</td><td>92%</td><td><span class="chip">Easy</span></td></tr>
+<tr><td>Explain 3NF vs BCNF</td><td>31%</td><td><span class="chip red">Hard</span></td></tr>
+<tr><td>Q7: ACID property</td><td>22%</td><td><span class="chip sun">⚠️ Check it</span></td></tr></table>
+<div class="note">🔎 Even top scorers missed Q7. The wording might be confusing. Want to edit it?</div>
+<span class="btn alt">🏆 See leaderboard</span></div></section>
+
+</main></body></html>
