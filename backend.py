@@ -4,7 +4,7 @@ def db():
     con = sqlite3.connect("interactive_quiz.db")
     cur = con.cursor()
 
-    
+
     cur.execute('''
         CREATE TABLE IF NOT EXISTS users(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -16,7 +16,7 @@ def db():
         )
     ''')
 
-    
+  
     cur.execute('''
         CREATE TABLE IF NOT EXISTS quizzes(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,6 +24,7 @@ def db():
         )
     ''')
 
+  
     cur.execute('''
         CREATE TABLE IF NOT EXISTS questions(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,12 +35,13 @@ def db():
             option_b TEXT NOT NULL,
             option_c TEXT NOT NULL,
             option_d TEXT NOT NULL,
-            correct_option TEXT NOT NULL, -- e.g., 'B'
-            difficulty TEXT DEFAULT 'Easy', -- Easy, Hard, etc.
+            correct_option TEXT NOT NULL,
+            difficulty TEXT DEFAULT 'Easy',
             FOREIGN KEY(quiz_id) REFERENCES quizzes(id)
         )
     ''')
-    
+
+   
     cur.execute('''
         CREATE TABLE IF NOT EXISTS quiz_attempts(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -53,13 +55,14 @@ def db():
         )
     ''')
 
+  
     cur.execute('''
         CREATE TABLE IF NOT EXISTS attempt_details(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             attempt_id INTEGER,
             question_id INTEGER,
             selected_answer TEXT,
-            confidence_level TEXT, -- 'Sure', 'Unsure', 'Guess'
+            confidence_level TEXT,
             is_correct BOOLEAN,
             FOREIGN KEY(attempt_id) REFERENCES quiz_attempts(id),
             FOREIGN KEY(question_id) REFERENCES questions(id)
